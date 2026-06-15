@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CT014-3-3 — Complete Study Notes</title>
+<style>
+  /* ── Base resets & CSS variable shims ── */
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f5f5f3;
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #5c5c5a;
+    --color-text-tertiary: #8a8a88;
+    --color-border-tertiary: #e0deda;
+    --color-border-secondary: #cbc9c4;
+    --color-border-primary: #a8a6a0;
+    --color-border-info: #378add;
+    --border-radius-lg: 10px;
+    --border-radius-md: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f3;
+    color: var(--color-text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── Layout ── */
+  .sidenav {
+    position: fixed; top: 0; left: 0; width: 200px; height: 100vh;
+    background: var(--color-background-primary);
+    border-right: 0.5px solid var(--color-border-tertiary);
+    overflow-y: auto; padding: 16px 0; z-index: 100;
+  }
+  .sidenav-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    color: var(--color-text-tertiary); padding: 0 14px 10px;
+    text-transform: uppercase;
+  }
+  .sidenav a {
+    display: block; padding: 6px 14px; color: var(--color-text-secondary);
+    text-decoration: none; font-size: 12px; font-weight: 500;
+    border-left: 2px solid transparent; transition: all .12s;
+  }
+  .sidenav a:hover { color: var(--color-text-primary); background: var(--color-background-secondary); }
+  .sidenav a.active { color: #0C447C; border-left-color: #378add; background: #E6F1FB; }
+
+  .main { margin-left: 200px; padding: 32px 40px; max-width: 860px; }
+
+  /* ── Cover ── */
+  .cover {
+    background: var(--color-text-primary); border-radius: 14px;
+    padding: 40px 36px; margin-bottom: 40px; text-align: center;
+  }
+  .cover-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #9FE1CB; text-transform: uppercase; margin-bottom: 12px; }
+  .cover-title { font-size: 28px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 6px; }
+  .cover-sub { font-size: 13px; color: #9FE1CB; margin-bottom: 20px; }
+  .cover-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; max-width: 440px; margin: 0 auto; text-align: left; }
+  .cover-item { font-size: 11px; color: #B4B2A9; padding: 5px 10px; background: rgba(255,255,255,.06); border-radius: 6px; }
+  .cover-item b { color: #9FE1CB; margin-right: 5px; }
+
+  /* ── Lecture section ── */
+  .lec-section { margin-bottom: 56px; scroll-margin-top: 20px; }
+
+  .lec-banner {
+    background: var(--color-text-primary); border-radius: 12px;
+    padding: 20px 24px; margin-bottom: 24px;
+  }
+  .lec-banner-num { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; opacity: .6; color: #fff; }
+  .lec-banner-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+  .lec-banner-sub { font-size: 11px; color: #9FE1CB; opacity: .8; }
+
+  /* accent colors per lecture */
+  .lec-1 .lec-banner-num  { color: #60A5FA; }
+  .lec-2 .lec-banner-num  { color: #34D399; }
+  .lec-3 .lec-banner-num  { color: #A78BFA; }
+  .lec-4 .lec-banner-num  { color: #FBBF24; }
+  .lec-5 .lec-banner-num  { color: #60A5FA; }
+  .lec-6 .lec-banner-num  { color: #34D399; }
+  .lec-7 .lec-banner-num  { color: #A78BFA; }
+  .lec-8 .lec-banner-num  { color: #FBBF24; }
+  .lec-9 .lec-banner-num  { color: #FB7185; }
+  .lec-10 .lec-banner-num { color: #86EFAC; }
+
+  /* ── Shared section styles (matching uploaded file) ── */
+  .sec { margin-bottom: 1.5rem; }
+  .sec-title {
+    font-size: 11px; font-weight: 600; color: var(--color-text-secondary);
+    text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px;
+  }
+
+  /* ── Cards ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+    gap: 8px;
+  }
+  .cards-2 { grid-template-columns: 1fr 1fr !important; }
+  .cards-3 { grid-template-columns: 1fr 1fr 1fr !important; }
+  .card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg); padding: 0.75rem 1rem;
+  }
+  .card-head { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .card-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+  /* ── Tags ── */
+  .tag { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 4px; margin-bottom: 5px; display: inline-block; }
+  .tag-a { background: #B5D4F4; color: #0C447C; }
+  .tag-b { background: #9FE1CB; color: #085041; }
+  .tag-c { background: #CECBF6; color: #3C3489; }
+  .tag-d { background: #FAC775; color: #633806; }
+  .tag-e { background: #F5C4B3; color: #712B13; }
+  .tag-f { background: #C6EDB2; color: #27500A; }
+
+  /* ── Pills ── */
+  .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 99px; margin: 2px 2px 2px 0; }
+  .pill-blue   { background: #E6F1FB; color: #0C447C; }
+  .pill-teal   { background: #E1F5EE; color: #085041; }
+  .pill-purple { background: #EEEDFE; color: #3C3489; }
+  .pill-amber  { background: #FAEEDA; color: #633806; }
+  .pill-coral  { background: #FAECE7; color: #712B13; }
+  .pill-green  { background: #EAF3DE; color: #27500A; }
+
+  /* ── Divider ── */
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.2rem 0; }
+
+  /* ── Hierarchy rows (Lec 10 style) ── */
+  .hier { display: flex; flex-direction: column; gap: 0; }
+  .hier-row {
+    padding: 8px 14px; font-size: 12px; color: var(--color-text-primary);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .hier-row:last-child { border-bottom: none; }
+  .hier-label { font-weight: 500; }
+  .hier-desc { font-size: 11px; color: var(--color-text-secondary); max-width: 65%; text-align: right; }
+
+  /* ── Process steps ── */
+  .process-row { display: flex; gap: 6px; margin-bottom: 6px; align-items: flex-start; }
+  .process-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #E6F1FB; color: #0C447C;
+    font-size: 11px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .process-content { flex: 1; font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .process-title { font-weight: 500; color: var(--color-text-primary); }
+
+  /* ── Compare grid ── */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* ── Timeline ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-row {
+    display: grid; grid-template-columns: 130px 1fr;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-bottom: none; background: var(--color-background-primary);
+  }
+  .tl-row:first-child { border-radius: 8px 8px 0 0; }
+  .tl-row:last-child  { border-bottom: 0.5px solid var(--color-border-tertiary); border-radius: 0 0 8px 8px; }
+  .tl-era { padding: 8px 12px; font-size: 11px; font-weight: 600; color: #0C447C; background: #E6F1FB; border-right: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; }
+  .tl-desc { padding: 8px 12px; font-size: 12px; color: var(--color-text-secondary); }
+
+  /* ── Triple constraint ── */
+  .triple { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .tc-pill { padding: 6px 18px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+  .tc-arr { font-size: 16px; color: var(--color-text-tertiary); }
+
+  /* ── Exam note ── */
+  .exam-note {
+    background: #FAEEDA; border: 0.5px solid #FAC775;
+    border-radius: 8px; padding: 10px 14px;
+    font-size: 12px; color: #633806; line-height: 1.6;
+    margin-top: 8px;
+  }
+  .exam-note::before { content: '★ Exam tip: '; font-weight: 700; }
+
+  @media (max-width: 700px) {
+    .sidenav { display: none; }
+    .main { margin-left: 0; padding: 20px 16px; }
+    .cards-2, .cards-3, .compare-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="sidenav">
+  <div class="sidenav-title">CT014-3-3</div>
+  <a href="#lec1">Lec 1 — IS Management</a>
+  <a href="#lec2">Lec 2 — Strategic Use of IT</a>
+  <a href="#lec3">Lec 3 — IT Operations</a>
+  <a href="#lec4">Lec 4 — Project Management</a>
+  <a href="#lec5">Lec 5 — Distributed Systems</a>
+  <a href="#lec6">Lec 6 — Telecommunication</a>
+  <a href="#lec7">Lec 7 — E-Business</a>
+  <a href="#lec8">Lec 8 — IT/IS Planning</a>
+  <a href="#lec9">Lec 9 — Cost &amp; Benefits</a>
+  <a href="#lec10">Lec 10 — IT Governance</a>
+</nav>
+
+<main class="main">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">CT014-3-3 · Critical Issues in Managing IS</div>
+  <div class="cover-title">Complete Study Notes<br/>Lectures 1 – 10</div>
+  <div class="cover-sub">All Key Concepts, Definitions &amp; Exam Tips</div>
+  <div class="cover-grid">
+    <div class="cover-item"><b>Lec 1</b>IS Management</div>
+    <div class="cover-item"><b>Lec 2</b>Strategic Use of IT</div>
+    <div class="cover-item"><b>Lec 3</b>IT Operations</div>
+    <div class="cover-item"><b>Lec 4</b>Project Management</div>
+    <div class="cover-item"><b>Lec 5</b>Distributed Systems</div>
+    <div class="cover-item"><b>Lec 6</b>Telecommunication</div>
+    <div class="cover-item"><b>Lec 7</b>E-Business</div>
+    <div class="cover-item"><b>Lec 8</b>IT/IS Planning</div>
+    <div class="cover-item"><b>Lec 9</b>Cost &amp; Benefits</div>
+    <div class="cover-item"><b>Lec 10</b>IT Governance &amp; Audit</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ LEC 1 ══ -->
+<section class="lec-section lec-1" id="lec1">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 1</div>
+  <div class="lec-banner-title">IS Management in the Global Economy</div>
+  <div class="lec-banner-sub">IT vs IS · 3 Business Issues · Org Environment · Technology Trends · IS Mission</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">IT vs IS — core definitions</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">IT</div><div class="card-body">The pervasive technology element that has revolutionized and restructured human work and society.</div></div>
+    <div class="card"><div class="tag tag-b">IS</div><div class="card-body">Combines technologies, people, processes, and organisational mechanisms to foster IT use and improve organisational performance.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">3 Business issues due to growth of IT/IS</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">1. Globalization</div><div class="card-body">Worldwide expansion. Orgs must balance global IT/IS goals with local systems needs. Internet accelerates internationalization.</div></div>
+    <div class="card"><div class="card-head">2. E-enablement</div><div class="card-body">Leveraging IT/IS to build relationships with consumers and enterprises. Internet is the hub for business.</div></div>
+    <div class="card"><div class="card-head">3. Business intelligence</div><div class="card-body">Knowledge sharing and management. Transfer of knowledge between people. Most important asset = people and their knowledge.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Management of IT/IS — 3 shifts</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Governance shift</div><div class="card-body">Who makes IT decisions shifting from IS executives alone → collaborative effort between IS, the business, and constituencies.</div></div>
+    <div class="card"><div class="card-head">Role shift</div><div class="card-body">IT/IS role shifting from application delivery → system integration and infrastructure development.</div></div>
+    <div class="card"><div class="card-head">Outsourcing</div><div class="card-body">Development and management of relationships with external service providers is now a key IS management responsibility.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Organisational environment</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">External environment</div><div class="card-body">Internet economy · Global marketplace · Business ecosystems · Faster business cycles (first-mover advantage) · Accountability &amp; transparency · Rising societal risks (security, job losses)</div></div>
+    <div class="card"><div class="tag tag-b">Internal environment</div><div class="card-body">Supply-push → demand-pull · Customer self-service · Real-time working · Team-based working (groupware) · Anytime/anyplace work · Outsourcing &amp; alliances · Flatter organisations</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Technology environment — 4 trends</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Hardware</div><div class="card-body">1950s–60s: Mainframe → 1970s: Minicomputer → 1980s–90s: PCs/client-server → Late 90s: Web/mobile → Now: AR, VR, AI Robots, IoT, Quantum computers.</div></div>
+    <div class="card"><div class="card-head">Software</div><div class="card-body">Early: TPS, in-house dev → Later: ERP, open systems, web-centric → Now: Collaboration, Social, AI/ML, Blockchain, Cybersecurity.</div></div>
+    <div class="card"><div class="card-head">Data</div><div class="card-body">1970s: DBMS → 1990s: Data warehousing &amp; mining → 2000s: XML, web content → 2010s+: Big Data — structured, semi-structured, unstructured.</div></div>
+    <div class="card"><div class="card-head">Communications</div><div class="card-body">1980s: LAN/WAN → 1990s: Internet, TCP/IP, VoIP → 2010s+: IoT, Machine-to-Machine, Edge Computing, 4G/5G.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-purple">IT vs IS</span><span class="pill pill-purple">Globalization</span><span class="pill pill-purple">E-enablement</span><span class="pill pill-purple">Business intelligence</span><span class="pill pill-purple">External environment</span><span class="pill pill-purple">Internal environment</span><span class="pill pill-purple">Technology environment</span><span class="pill pill-purple">Groupware</span><span class="pill pill-purple">Demand-pull vs supply-push</span><span class="pill pill-purple">TPS → MIS → today</span>
+  </div>
+  <div class="exam-note">IT = the technology itself. IS = technology + people + processes + org mechanisms. Know 3+ examples from each environment side. Technology trends = direct review Q.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 2 ══ -->
+<section class="lec-section lec-2" id="lec2">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 2</div>
+  <div class="lec-banner-title">Strategic Use of IT</div>
+  <div class="lec-banner-sub">Working Inward · Working Outward · Working Across · Loose/Close/Tight · Mass Customization</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">3 directions of strategic IT use ← backbone of Lec 2</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="tag tag-a">Working Inward (B2E)</div><div class="card-body">Using IT to improve internal operations and employee productivity. Key vehicle: intranet (benefits: 24/7 availability, lower maintenance, faster updates).</div></div>
+    <div class="card"><div class="tag tag-b">Working Outward (B2C)</div><div class="card-body">Using IT to get closer to customers, enter new markets, enable mass customization. New experience curves and electronic tenders.</div></div>
+    <div class="card"><div class="tag tag-c">Working Across (B2B)</div><div class="card-body">Using IT to collaborate with suppliers, partners, and co-suppliers. Build virtual enterprise / e-marketplace.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Evolution of strategic IT use</div>
+  <div class="timeline">
+    <div class="tl-row"><div class="tl-era">Mid 1980s</div><div class="tl-desc">End-user computing — Working Inward (adoption of PCs and software).</div></div>
+    <div class="tl-row"><div class="tl-era">Late 1980s</div><div class="tl-desc">Transactional efficiency — Working Outward (gain competitive advantage).</div></div>
+    <div class="tl-row"><div class="tl-era">1990s</div><div class="tl-desc">Re-engineering — Working Inward (business process re-engineering / BPR).</div></div>
+    <div class="tl-row"><div class="tl-era">Mid–late 1990s</div><div class="tl-desc">Internet — integration into e-business models. Dotcom spiral began 1999.</div></div>
+    <div class="tl-row"><div class="tl-era">Early 2000s</div><div class="tl-desc">Back to basics — Working Across (leverage internet to work more closely with others).</div></div>
+    <div class="tl-row"><div class="tl-era">2010 and beyond</div><div class="tl-desc">All three simultaneously — IT at the forefront of business strategy.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Cheap &amp; disruptive revolution + IT as a utility</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-d">Cheap revolution</div><div class="card-body">CIOs shifting from expensive proprietary hardware → cheap generic products. Google runs on 100,000 cheap servers. Also: free open-source software, VoIP, free apps.</div></div>
+    <div class="card"><div class="tag tag-a">IT as a utility</div><div class="card-body">IT becoming ubiquitous like electricity. Debate: does IT still give competitive advantage? Proponents say YES — creativity, segmentation, differentiation. IT systems are infinitely configurable.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Loose · Close · Tight relationships ← very examinable</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="tag tag-a">Loose</div><div class="card-body">Ad hoc, limited access to internal info. May or may not be confidential. <b>Low risk &amp; low cost.</b></div></div>
+    <div class="card"><div class="tag tag-c">Close</div><div class="card-body">Two parties exchange info formally. Some info may be confidential. <b>Moderate risk &amp; cost.</b></div></div>
+    <div class="card"><div class="tag tag-b">Tight</div><div class="card-body">Two parties share at least one business process. Highly confidential data. <b>High risk &amp; cost</b> — requires full integration.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Working outward — key concepts</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">New experience curve</div><div class="card-body">Using IT as basis of a product/service = moving to a new curve. More experience → connected curves of competitive advantage. Requires substantial investment.</div></div>
+    <div class="card"><div class="card-head">Electronic tenders</div><div class="card-body">The capability to monitor a product or service using computers. Examples: car diagnostics, package tracking. Main objective: get closer to the customer.</div></div>
+    <div class="card"><div class="card-head">Mass customization</div><div class="card-body">Long-tail phenomenon — shift from mainstream → niches. Internet enables personalization at scale. Examples: iTunes, YouTube, mobile applets.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-teal">Working Inward/Outward/Across</span><span class="pill pill-teal">Cheap &amp; disruptive revolution</span><span class="pill pill-teal">IT as a utility</span><span class="pill pill-teal">New experience curve</span><span class="pill pill-teal">Electronic tenders</span><span class="pill pill-teal">Loose/Close/Tight</span><span class="pill pill-teal">Intranet (B2E)</span><span class="pill pill-teal">Mass customization / long tail</span><span class="pill pill-teal">CRM</span><span class="pill pill-teal">Co-suppliers</span>
+  </div>
+  <div class="exam-note">Loose/Close/Tight = risk increases with closeness. Electronic tenders = monitoring a product/service using computers. IT utility debate: IT like electricity, but creativity and management quality still differentiates.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 3 ══ -->
+<section class="lec-section lec-3" id="lec3">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 3</div>
+  <div class="lec-banner-title">Managing IT Operations</div>
+  <div class="lec-banner-sub">IT Budget · Challenges · 5 Types of Outsourcing · Offshoring · Business Continuity</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">What are IT operations?</div>
+  <div class="card"><div class="card-body">Day-to-day tasks related to managing technology infrastructure — applications, services, storage, networking, and connectivity. If not professionally run and backed up, a company could suffer a crash that shuts down business.</div></div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Typical IT budget breakdown</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="tag tag-a">57% — Operations</div><div class="card-body">The largest slice. Day-to-day running of IT infrastructure.</div></div>
+    <div class="card"><div class="tag tag-b">33% — Systems &amp; programming</div><div class="card-body">Of this 33%: <b>70% is maintenance</b>, only 30% is new development.</div></div>
+    <div class="card"><div class="tag tag-c">10% — Admin &amp; training</div><div class="card-body">Overhead and staff development costs.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT operational measures</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">External measures (what customers see)</div><div class="card-body">System uptime / downtime · Response and turnaround time · Program failures</div></div>
+    <div class="card"><div class="tag tag-b">Internal measures (IS/IT people)</div><div class="card-body">Computer usage as % of capacity · Disk storage used · Job queue length</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Types of IT outsourcing ← direct review Q</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Monolithic</div><div class="card-body">Huge contracts covering almost entire IT operations outsourced to one vendor.</div></div>
+    <div class="card"><div class="card-head">Transitional</div><div class="card-body">Outsource legacy maintenance so staff can build new systems, OR outsource new dev and keep maintenance in-house.</div></div>
+    <div class="card"><div class="card-head">Best-of-breed</div><div class="card-body">Selective outsourcing by vendor specialty — desktop support, data centers, network mgmt, disaster recovery, cloud. No single vendor best in all areas.</div></div>
+    <div class="card"><div class="card-head">BPO</div><div class="card-body">Business Process Outsourcing — outsource all or most of a reengineered process (BPR) with a large IT component.</div></div>
+    <div class="card"><div class="card-head">E-Business</div><div class="card-body">Outsource development and operation of web sites. Lets companies move fast and stay flexible. Common in internet-based firms.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Managing IT outsourcing — 3 aspects</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="card-head">Organisational structure</div><div class="card-body">Joint teams: Top-level (conflict resolution) · Operational (day-to-day) · Joint special purpose (pressing issues) · Committees (change management).</div></div>
+    <div class="card"><div class="card-head">Governance</div><div class="card-body">Laid out in a contract. SLAs define: responsibilities, performance metrics, penalties, and bonuses.</div></div>
+    <div class="card"><div class="card-head">Day-to-day working</div><div class="card-body">Manage expectations · Integrate staffs explicitly · Grant appropriate access · Hold joint social events · Communicate frequently.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Offshoring vs insourcing</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-d">Offshoring</div><div class="card-body">Outsourcing to another country for lower labor costs. Challenges: cultural differences, communication, local laws. Must provide cultural training.</div></div>
+    <div class="card"><div class="tag tag-b">Insourcing</div><div class="card-body">Delegating work to an internal but mostly independent sub-contractor. Parent-subsidiary model. Maintains tight control of contract job execution.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Business continuity — disaster recovery options</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Hot site</div><div class="card-body">Fully equipped, operational backup site. Ready to go immediately. Highest cost.</div></div>
+    <div class="card"><div class="card-head">Warm site</div><div class="card-body">Partially equipped site. Some setup required before use. Moderate cost.</div></div>
+    <div class="card"><div class="card-head">Cold site</div><div class="card-body">Space only — no equipment. Lowest cost, longest recovery time.</div></div>
+    <div class="card"><div class="card-head">Internal resources</div><div class="card-body">Multiple data centers · Distributed processing · Backup telecom facilities.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-purple">IT operations</span><span class="pill pill-purple">External measures</span><span class="pill pill-purple">Internal measures</span><span class="pill pill-purple">Monolithic outsourcing</span><span class="pill pill-purple">Transitional outsourcing</span><span class="pill pill-purple">Best-of-breed outsourcing</span><span class="pill pill-purple">BPO</span><span class="pill pill-purple">E-business outsourcing</span><span class="pill pill-purple">SLA</span><span class="pill pill-purple">Offshoring</span><span class="pill pill-purple">Insourcing</span><span class="pill pill-purple">Hot / Warm / Cold site</span>
+  </div>
+  <div class="exam-note">57% of IT budget = operations. Hot site = fully ready, Cold site = space only. Know one-line definitions for all 5 outsourcing types.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 4 ══ -->
+<section class="lec-section lec-4" id="lec4">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 4</div>
+  <div class="lec-banner-title">IT Project Management</div>
+  <div class="lec-banner-sub">PMI 10 Areas · Triple Constraint · 3 Roles · 4-Phase Lifecycle · Why Projects Fail</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">Core definitions</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">Project</div><div class="card-body">A temporary endeavor undertaken to create a unique product or service. One-time initiative with a definite beginning and ending.</div></div>
+    <div class="card"><div class="tag tag-b">Project management</div><div class="card-body">The application of knowledge, skills, tools, and techniques to a broad range of activities to meet the requirements of a particular project.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT project goal + triple constraint</div>
+  <div class="card" style="margin-bottom:10px;"><div class="card-body">Goal: Deliver a quality system that meets business needs, <b>on schedule</b> and <b>on budget</b>.</div></div>
+  <div class="triple">
+    <span class="tc-pill pill-blue">Scope</span>
+    <span class="tc-arr">↔</span>
+    <span class="tc-pill pill-teal">Time</span>
+    <span class="tc-arr">↔</span>
+    <span class="tc-pill pill-amber">Cost</span>
+  </div>
+  <p style="font-size:11px; color:var(--color-text-tertiary);">A change in one factor automatically changes at least one of the others.</p>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">PMI — 10 knowledge areas</div>
+  <div>
+    <span class="pill pill-blue">Project Scope</span><span class="pill pill-blue">Project Time</span><span class="pill pill-blue">Project Cost</span><span class="pill pill-blue">Human Resources</span><span class="pill pill-blue">Quality Management</span><span class="pill pill-blue">Risk Management</span><span class="pill pill-blue">Communications</span><span class="pill pill-blue">Procurement</span><span class="pill pill-blue">Project Integration</span><span class="pill pill-blue">Stakeholders</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Project management roles ← direct review Q</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="tag tag-a">Project Manager (PM)</div><div class="card-body">Plans and executes the project. Needs technical knowledge + non-technical skills: ethical, conflict resolution, critical thinking, task-oriented, adaptable.</div></div>
+    <div class="card"><div class="tag tag-b">Project Sponsor</div><div class="card-body">Business manager who owns and pays for the project. Fights for approval, ensures resources, provides funding. PM must maintain strong relationship with sponsor.</div></div>
+    <div class="card"><div class="tag tag-c">Project Champion</div><div class="card-body">Business manager with high credibility who advocates for the project. Often a lower-level manager highly impacted by it. Enthusiasm + excellent communication.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Project lifecycle — 4 phases</div>
+  <div class="card" style="padding:1rem;">
+    <div class="process-row"><div class="process-num">1</div><div class="process-content"><span class="process-title">Initiation</span> — Deliverable: Project Charter (objectives, scope, assumptions, estimated benefits). Assess feasibility: economic, operational, technical, schedule, legal, political.</div></div>
+    <div class="process-row"><div class="process-num">2</div><div class="process-content"><span class="process-title">Planning</span> — 3 components: Scheduling (WBS), Budgeting, Staffing. Deliverables: Statement of Work + Project Plan.</div></div>
+    <div class="process-row"><div class="process-num">3</div><div class="process-content"><span class="process-title">Execution &amp; Control</span> — Risk and uncertainty highest at start. Manage risks and conflicts. Deliverable: completed project.</div></div>
+    <div class="process-row"><div class="process-num">4</div><div class="process-content"><span class="process-title">Closing</span> — Post-project review: What went right? What went wrong? What to do differently?</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Phase 2 — 3 planning components ← direct review Q</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="card-head">1. Scheduling</div><div class="card-body">Work Breakdown Structure (WBS) — subdivide work into tasks. Assign time estimates. Consider task dependencies and milestones.</div></div>
+    <div class="card"><div class="card-head">2. Budgeting</div><div class="card-body">Document anticipated costs. Common PM mistakes: too optimistic, leaving components out, inconsistent methodology.</div></div>
+    <div class="card"><div class="card-head">3. Staffing</div><div class="card-body">Right skill mix, proficiency, quantity, timing. May need CoE training, incentives, or outside contractors.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Why projects fail ← direct review Q</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Poor specification</div><div class="card-body">Tasks overlooked, sloppy requirements gathering.</div></div>
+    <div class="card"><div class="card-head">Poor control</div><div class="card-body">Failure to meet/control deadlines, delays in decision making.</div></div>
+    <div class="card"><div class="card-head">Resource failure</div><div class="card-body">Wrong estimates, insufficient or poorly managed resources.</div></div>
+    <div class="card"><div class="card-head">Staffing problems</div><div class="card-body">Key personnel leave, poor communication, lack of teamwork.</div></div>
+    <div class="card"><div class="card-head">Poor planning</div><div class="card-body">No quality/risk management, no contingency planning, poor costing.</div></div>
+    <div class="card"><div class="card-head">Wrong project</div><div class="card-body">Solved the wrong problem. Best PM can't salvage the wrong project.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-amber">Project management</span><span class="pill pill-amber">IT portfolio management</span><span class="pill pill-amber">10 PMI knowledge areas</span><span class="pill pill-amber">Triple constraint</span><span class="pill pill-amber">Project Manager</span><span class="pill pill-amber">Project Sponsor</span><span class="pill pill-amber">Project Champion</span><span class="pill pill-amber">WBS</span><span class="pill pill-amber">Scheduling / Budgeting / Staffing</span><span class="pill pill-amber">Statement of Work</span>
+  </div>
+  <div class="exam-note">PM plans/executes, Sponsor owns/funds, Champion advocates. Triple constraint: change one = change others. "Wrong project" is the sneakiest failure reason.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 5 ══ -->
+<section class="lec-section lec-5" id="lec5">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 5</div>
+  <div class="lec-banner-title">Distributed Systems &amp; Networking</div>
+  <div class="lec-banner-sub">5 Reasons · Centralized vs Distributed · 4 Attributes · Enterprise Types · Thin/Thick Client · Network Mgmt</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">5 reasons for networking</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">1. Share tech resources</div><div class="card-body">Sharing expensive hardware/software stored on file servers across all network users.</div></div>
+    <div class="card"><div class="card-head">2. Share data</div><div class="card-body">Virtual teams share data; retrieve from other nodes; efficient B2B transactions.</div></div>
+    <div class="card"><div class="card-head">3. Distributed processing</div><div class="card-body">Information processing at multiple sites via telecom lines. Client/server splits workload.</div></div>
+    <div class="card"><div class="card-head">4. Enhanced communications</div><div class="card-body">Email, IM, Videoconferencing, Blogs, Social networks, strategic alliances.</div></div>
+    <div class="card"><div class="card-head">5. Marketing outreach</div><div class="card-body">Sharing data via Internet with consumers as a marketing and sales channel.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Centralized vs distributed</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">Centralized</div><div class="card-body">All processing at one central computer. Terminals connect to it. Single unified database. Simple to manage but single point of failure.</div></div>
+    <div class="card"><div class="tag tag-b">Distributed</div><div class="card-body">Processing spread over many computers (LAN or WAN). Independent components. Evolution: Mainframe → Client-server → Web → Internet.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">4 attributes — what determines how "distributed" a system is? ← direct review Q</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Where processing is done</div><div class="card-body">Is workload spread to other machines? Requires system interoperability.</div></div>
+    <div class="card"><div class="card-head">How devices are interconnected</div><div class="card-body">Redundancy — at least one alternative route between nodes.</div></div>
+    <div class="card"><div class="card-head">Where information is stored</div><div class="card-body">Centralized vs distributed data storage locations.</div></div>
+    <div class="card"><div class="card-head">Rules/standards + management</div><div class="card-body">Security, operating procedures, how distributed units communicate.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Types of enterprise distributed systems</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Host-based hierarchy</div><div class="card-body">Central mainframe at top; terminals connect to it.</div></div>
+    <div class="card"><div class="card-head">Decentralized stand-alone</div><div class="card-body">"Islands of computing" — not truly distributed.</div></div>
+    <div class="card"><div class="card-head">Peer-to-peer LAN</div><div class="card-body">No hierarchy; all computers are equals on the network.</div></div>
+    <div class="card"><div class="card-head">Hybrid enterprise-wide</div><div class="card-body">Mainframe + departmental LANs connected via WANs. Most common today.</div></div>
+    <div class="card"><div class="card-head">Client-server</div><div class="card-body">Splits workload between client (UI/graphics) and server (databases/processing).</div></div>
+    <div class="card"><div class="card-head">Internet-based</div><div class="card-body">Extension of client-server via Internet; enables ubiquitous computing.</div></div>
+    <div class="card"><div class="card-head">Web services (SaaS)</div><div class="card-body">Programs request other web services to do tasks; pay only for needed functionality.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Thin client vs thick (fat) client</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-e">Thin client</div><div class="card-body">Most processing on server. Client displays in browser. May have no hard drive. Needs constant server communication.</div></div>
+    <div class="card"><div class="tag tag-b">Thick/fat client</div><div class="card-body">Bulk of processing on desktop PC. Less constant server comms — mainly for archival storage.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Network management — 4 types</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Fault management</div><div class="card-body">Identify, isolate, fix errors → document the fix. Uses SNMP notifications.</div></div>
+    <div class="card"><div class="card-head">Configuration management</div><div class="card-body">Monitor &amp; maintain device configs as software and updates change.</div></div>
+    <div class="card"><div class="card-head">Performance management</div><div class="card-body">Track device/network performance; flag slow devices for updates.</div></div>
+    <div class="card"><div class="card-head">Security management</div><div class="card-body">Monitor network to maintain cybersecurity standards and compliance.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-blue">Centralised systems</span><span class="pill pill-blue">Distributed systems</span><span class="pill pill-blue">Client-server</span><span class="pill pill-blue">Host-based hierarchy</span><span class="pill pill-blue">Decentralized stand-alone</span><span class="pill pill-blue">Peer-to-peer LAN</span><span class="pill pill-blue">Hybrid enterprise-wide</span><span class="pill pill-blue">Thin client</span><span class="pill pill-blue">Thick client</span><span class="pill pill-blue">QoS</span><span class="pill pill-blue">IT architecture</span><span class="pill pill-blue">IT infrastructure</span>
+  </div>
+  <div class="exam-note">The 4 attributes question is a direct review Q. Thin = server processing. Thick = local processing. Distribute unless operations are interdependent (ERP) or culture doesn't support it.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 6 ══ -->
+<section class="lec-section lec-6" id="lec6">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 6</div>
+  <div class="lec-banner-title">Managing Telecommunication</div>
+  <div class="lec-banner-sub">Digital Convergence · Internet/Intranet/Extranet · 3 Attributes · 1G–5G · IoT · IS Dept 3 Roles</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">Definition</div>
+  <div class="card"><div class="card-body">The flow of information among individuals, workgroups, departments, customer sites, regional offices, between enterprises, and with the outside world. Telecom shifted from <b>voice → data</b>. The Internet now underpins e-business.</div></div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Analog era vs internet (digital) era</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">Old (analog)</div><div class="card-body">Circuit switching · Sine wave signals · Telephone, coaxial cable, fiber optics, PSTN, modems.</div></div>
+    <div class="card"><div class="tag tag-b">Internet era (digital)</div><div class="card-body">Packet switching (intelligent routing) · Binary 0s &amp; 1s · Handles voice (VoIP), email, multimedia, gaming. More robust.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Digital convergence</div>
+  <div class="card"><div class="card-body">The merging of voice, data, and video into one digital form over IP. IP has become the protocol of choice. Affects 4 industries: IT, consumer electronics, telecommunications, and media. Example: Zoom, Skype (VoIP + video).</div></div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Internet · Intranet · Extranet</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="tag tag-a">Internet</div><div class="card-body">Worldwide PUBLIC network using TCP/IP.</div></div>
+    <div class="card"><div class="tag tag-b">Intranet</div><div class="card-body">Private network INSIDE an organisation using TCP/IP — for employees only.</div></div>
+    <div class="card"><div class="tag tag-c">Extranet</div><div class="card-body">Part of intranet extended to authorized external partners, suppliers, customers. Key for B2B e-commerce.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">3 attributes that make the internet important ← direct review Q</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="card-head">Ubiquity</div><div class="card-body">Global — any business has global reach with just a browser and website.</div></div>
+    <div class="card"><div class="card-head">Reliability</div><div class="card-body">Designed to survive crashes via alternate routing — other nodes accessible even if one fails.</div></div>
+    <div class="card"><div class="card-head">Scalability</div><div class="card-body">Has sustained incredible growth; well-designed sites can handle tens of millions of hits/day.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Mobile generations — 1G to 5G</div>
+  <div class="timeline">
+    <div class="tl-row"><div class="tl-era">1G</div><div class="tl-desc">Analog signals · Circuit switching · Voice only.</div></div>
+    <div class="tl-row"><div class="tl-era">2G</div><div class="tl-desc">Digital signals · Circuit switching · Voice + SMS.</div></div>
+    <div class="tl-row"><div class="tl-era">3G</div><div class="tl-desc">Mobile WANs · Email, web browsing (BlackBerry, early iPhone).</div></div>
+    <div class="tl-row"><div class="tl-era">4G</div><div class="tl-desc">IP networks · Internet video · High-speed data.</div></div>
+    <div class="tl-row"><div class="tl-era">5G</div><div class="tl-desc">Up to 100× faster than 4G · Low latency · High reliability.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IS department — 3 roles in telecom ← direct review Q</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="card-head">1. Plan &amp; create architecture</div><div class="card-body">Set design rules &amp; policies. Two principles: coherent interfaces (convergence) + transparency (network invisible to users). Ensure interoperability.</div></div>
+    <div class="card"><div class="card-head">2. Manage telecommunications</div><div class="card-body">Control costs — avoid fragmented procurement, underutilization, unauthorized use, billing errors. Use portfolio management.</div></div>
+    <div class="card"><div class="card-head">3. Stay at the forefront</div><div class="card-body">Monitor tech trends, explore new business models, stay aware of telecom regulations and policy changes.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IoT impact on telecommunication</div>
+  <div>
+    <span class="pill pill-teal">Smart routing / navigation</span><span class="pill pill-teal">Asset tracking</span><span class="pill pill-teal">Interoperability</span><span class="pill pill-teal">Increased bandwidth demand</span><span class="pill pill-teal">Low latency networks</span><span class="pill pill-teal">Cloud storage &amp; processing</span><span class="pill pill-coral">Security challenges</span><span class="pill pill-coral">Power consumption</span><span class="pill pill-coral">Geographic coverage gaps</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-teal">Digital convergence</span><span class="pill pill-teal">Internet / Intranet / Extranet</span><span class="pill pill-teal">Ubiquity</span><span class="pill pill-teal">Reliability</span><span class="pill pill-teal">Scalability</span><span class="pill pill-teal">Messaging (killer app)</span><span class="pill pill-teal">Wireless technologies</span><span class="pill pill-teal">IoT</span><span class="pill pill-teal">Packet switching</span><span class="pill pill-teal">Broadband</span><span class="pill pill-teal">1G–5G</span>
+  </div>
+  <div class="exam-note">3 attributes (Ubiquity, Reliability, Scalability) and IS dept's 3 roles are both direct review Qs. Extranet = intranet extended to external partners, NOT the public.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 7 ══ -->
+<section class="lec-section lec-7" id="lec7">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 7</div>
+  <div class="lec-banner-title">Managing E-Business</div>
+  <div class="lec-banner-sub">E-Business vs E-Commerce · Transaction Types · 6 C's · Web 1.0–5.0 · Technologies</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">E-Business vs E-Commerce — key distinction ← #1 definition Q</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">E-Business (broader)</div><div class="card-body">ALL business activities conducted electronically — marketing, HR, supply chain, logistics, customer service, accounting, billing, AND buying/selling.</div></div>
+    <div class="card"><div class="tag tag-b">E-Commerce (subset)</div><div class="card-body">ONLY the buying and selling of goods and services over the internet. E-commerce is a subset of e-business.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Types of e-business transactions</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">B2C</div><div class="card-body">Business to Consumer — e-tailing (Lazada, Shopee, Amazon).</div></div>
+    <div class="card"><div class="card-head">B2B</div><div class="card-body">Business to Business — <b>over 85% of all EC volume</b>. Restructures supply chains. Largest category.</div></div>
+    <div class="card"><div class="card-head">B2G / G2B</div><div class="card-body">Business to Government / Government to Business.</div></div>
+    <div class="card"><div class="card-head">C2C</div><div class="card-body">Consumer to Consumer (eBay, Carousell).</div></div>
+    <div class="card"><div class="card-head">G2C</div><div class="card-body">Government to Citizens — e-government services.</div></div>
+    <div class="card"><div class="card-head">M-Commerce</div><div class="card-body">Via wireless/handheld devices — smartphones, tablets. Includes Location-Based Services (LBS).</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Web evolution — know all 5</div>
+  <div class="timeline">
+    <div class="tl-row"><div class="tl-era">Web 1.0 — Static</div><div class="tl-desc">Read-only, mainly text-based, no interactivity (early 1990s–2000s).</div></div>
+    <div class="tl-row"><div class="tl-era">Web 2.0 — Social</div><div class="tl-desc">Dynamic, interactive, user-generated content. Facebook, YouTube, Twitter.</div></div>
+    <div class="tl-row"><div class="tl-era">Web 3.0 — Semantic</div><div class="tl-desc">AI understands and interprets content. Personalized, machine-readable data.</div></div>
+    <div class="tl-row"><div class="tl-era">Web 4.0 — Intelligent</div><div class="tl-desc">Autonomous, higher intelligence. Uses blockchain, IoT, cloud computing.</div></div>
+    <div class="tl-row"><div class="tl-era">Web 5.0 — Symbiotic</div><div class="tl-desc">Fully integrated human-tech relationship. Emotional AI, AR/VR, brain-computer interfaces.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">The 6 C's of a good e-commerce website ← direct review Q</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Context</div><div class="card-body">Site layout and design — functionally vs aesthetically dominant, or integrated.</div></div>
+    <div class="card"><div class="card-head">Content</div><div class="card-body">Text, pictures, sound, and video the site contains.</div></div>
+    <div class="card"><div class="card-head">Commerce</div><div class="card-body">Site's capabilities to enable commercial transactions — tools and pricing.</div></div>
+    <div class="card"><div class="card-head">Community</div><div class="card-body">Ways the site uses user-to-user communication to create a sense of membership.</div></div>
+    <div class="card"><div class="card-head">Connection</div><div class="card-body">Extent to which the site is linked to other sites.</div></div>
+    <div class="card"><div class="card-head">Customization</div><div class="card-body">Site's ability to tailor itself to different users or allow personalisation.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">E-business technologies</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Web analytics</div><div class="card-body">Track &amp; analyze traffic and user behavior. Google Analytics: real-time, audience, acquisition, behavior, conversion.</div></div>
+    <div class="card"><div class="card-head">SEO</div><div class="card-body">Optimize site to rank higher in SERPs. Techniques: keyword research, on-page optimization, link building, content creation.</div></div>
+    <div class="card"><div class="card-head">Blockchain</div><div class="card-body">Secure, transparent, tamper-proof transactions. Supply chain tracking. Used by Shopify, Microsoft, Expedia.</div></div>
+    <div class="card"><div class="card-head">Big Data &amp; AI</div><div class="card-body">Personalization, fraud detection, supply chain optimization, predictive analytics, chatbots.</div></div>
+    <div class="card"><div class="card-head">AR / VR</div><div class="card-body">Immersive product visualization, virtual shopping, try-before-you-buy experiences.</div></div>
+    <div class="card"><div class="card-head">IoT &amp; 5G</div><div class="card-body">Real-time inventory tracking, AR shopping experiences, edge computing for e-commerce.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-purple">E-business</span><span class="pill pill-purple">E-commerce</span><span class="pill pill-purple">E-business framework</span><span class="pill pill-purple">B2B / B2C / M-commerce</span><span class="pill pill-purple">LBS</span><span class="pill pill-purple">Web analytics</span><span class="pill pill-purple">SEO</span><span class="pill pill-purple">Online advertising</span><span class="pill pill-purple">Blockchain</span><span class="pill pill-purple">Web 1.0–5.0</span><span class="pill pill-purple">6 C's of e-commerce</span>
+  </div>
+  <div class="exam-note">E-commerce is a SUBSET of e-business. B2B = 85%+ of EC volume. Web evolution keywords: static → social → semantic → intelligent → symbiotic.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 8 ══ -->
+<section class="lec-section lec-8" id="lec8">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 8</div>
+  <div class="lec-banner-title">IT/IS Planning</div>
+  <div class="lec-banner-sub">IT vs IS Planning · Strategic vs Operational · 5-Step Process · SWOT · Support vs Strategic Role</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">IT planning vs IS planning (short term)</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">IT planning</div><div class="card-body">Focuses on technical infrastructure — hardware, software, networks, IT assets. Components: procurement, network planning, system integration, IT security, infrastructure management.</div></div>
+    <div class="card"><div class="tag tag-b">IS planning</div><div class="card-body">Focuses on how IS supports business objectives. Goes beyond tech. Components: business analysis, system development, data management, user training &amp; support.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Strategic IT planning vs strategic IS planning (long term, 3–5 years)</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-c">Strategic IT planning</div><div class="card-body">Long-term roadmap for IT infrastructure. Key elements: business-IT alignment, technology assessment, IT roadmap, resource planning, risk management.</div></div>
+    <div class="card"><div class="tag tag-b">Strategic IS planning</div><div class="card-body">Aligns IS/IT with long-term strategic objectives. Considers industry trends, risks, opportunities. Elements: business process analysis, major system selection, change management.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Benefits of information resources planning</div>
+  <div>
+    <span class="pill pill-teal">Context for IT/IS decision-making</span><span class="pill pill-teal">Align IT/IS with business goals</span><span class="pill pill-teal">Balance standardization vs agility</span><span class="pill pill-teal">Obtain capital investment approvals</span><span class="pill pill-teal">Achieve integration and innovation</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">The 5-step multi-step planning process ← #1 most examinable</div>
+  <div class="card" style="padding:1rem;">
+    <div class="process-row"><div class="process-num">1</div><div class="process-content"><span class="process-title">Assess current information resources</span> — Inventory and evaluate tech and human resources. Compare to past plans, competitors, benchmarks (e.g. MTTR). Reconcile IS manager vs business manager views of the mission.</div></div>
+    <div class="process-row"><div class="process-num">2</div><div class="process-content"><span class="process-title">Create an information vision</span> — A written expression of the desired future — how information will be used and managed. Represents senior management's long-term intent. Must align with future business strategy.</div></div>
+    <div class="process-row"><div class="process-num">3</div><div class="process-content"><span class="process-title">Design the IT architecture</span> — The blueprint — depicts how IT resources will be deployed to deliver the vision. Specifies how tech and human assets will be used. Structural level, logical components, interrelationships.</div></div>
+    <div class="process-row"><div class="process-num">4</div><div class="process-content"><span class="process-title">Formulate the strategic IT/IS plan</span> — Long-term objectives (3–5 years). 4 sub-steps: set objectives → external analysis → internal analysis → establish strategic initiatives. Uses SWOT analysis.</div></div>
+    <div class="process-row"><div class="process-num">5</div><div class="process-content"><span class="process-title">Formulate operational IT/IS plans</span> — Short-term (up to 1 year). Details what must be done now. Specifies: expected benefits &amp; risks, due dates, responsibilities, and precise expected results.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">SWOT analysis (used in step 4)</div>
+  <div class="cards">
+    <div class="card"><div class="card-head" style="color:#27500A;">S — Strengths</div><div class="card-body">Internal positive factors the organisation can leverage.</div></div>
+    <div class="card"><div class="card-head" style="color:#712B13;">W — Weaknesses</div><div class="card-body">Internal limiting factors that need to be addressed.</div></div>
+    <div class="card"><div class="card-head" style="color:#0C447C;">O — Opportunities</div><div class="card-body">External factors the organisation can capitalize on.</div></div>
+    <div class="card"><div class="card-head" style="color:#633806;">T — Threats</div><div class="card-body">External risks that could undermine strategic initiatives.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Support role vs strategic role of IS</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-e">Support role</div><div class="card-body">IS keeps the lights on — maintains infrastructure, processes transactions. Not central to competitive advantage.</div></div>
+    <div class="card"><div class="tag tag-b">Strategic role</div><div class="card-body">IS enables business strategy and drives competitive advantage. Measured by: degree of org dependence on IS + degree IS enables current business strategy.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-amber">IT planning</span><span class="pill pill-amber">IS planning</span><span class="pill pill-amber">Strategic IT planning</span><span class="pill pill-amber">Strategic IS planning</span><span class="pill pill-amber">Information vision</span><span class="pill pill-amber">IT architecture</span><span class="pill pill-amber">SWOT analysis</span><span class="pill pill-amber">Multi-step planning process</span><span class="pill pill-amber">Operational IT/IS plan</span><span class="pill pill-amber">Support vs strategic role</span><span class="pill pill-amber">Business-IT alignment</span><span class="pill pill-amber">MTTR benchmark</span>
+  </div>
+  <div class="exam-note">Know all 5 steps by name AND description. Information vision = written expression of desired future. IT architecture = the blueprint. Strategic plan = 3–5 years; Operational = up to 1 year.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 9 ══ -->
+<section class="lec-section lec-9" id="lec9">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 9</div>
+  <div class="lec-banner-title">Cost &amp; Benefits of IS</div>
+  <div class="lec-banner-sub">CBA · Hardware vs Software Costs · In-house/Buy/Outsource · Tangible/Intangible · TCO · Qualitative Assessment</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">What is cost-benefit analysis (CBA)?</div>
+  <div class="card"><div class="card-body">A method to estimate the costs and benefits of decisions in order to find the most cost-effective alternative. Costs are mainly incurred <b>now</b>, while benefits come <b>later</b>. The longer the delay in receiving benefits, the greater the risk.</div></div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">4 key elements of a CBA</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">1. Identifying costs</div><div class="card-body">Hardware, software, development, implementation, training, maintenance and support fees.</div></div>
+    <div class="card"><div class="card-head">2. Quantifying benefits</div><div class="card-body">Identify and quantify both tangible and intangible benefits.</div></div>
+    <div class="card"><div class="card-head">3. Timeframe</div><div class="card-body">The period over which costs and benefits will be consumed or realized.</div></div>
+    <div class="card"><div class="card-head">4. Monetary valuation</div><div class="card-body">Assign monetary values for comparison. Costs are easier; benefits require estimation and projection.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Hardware vs software costs ← direct review Q</div>
+  <div class="compare-grid">
+    <div class="card"><div class="tag tag-a">Hardware costs</div><div class="card-body">Front-end (user interface, peripherals) · Networking equipment (routers, switches, encryption) · Back-end (servers, desktop PCs, maintenance)</div></div>
+    <div class="card"><div class="tag tag-b">Software costs</div><div class="card-body">Development costs (in-house) or license/package costs (bought-in) · App dev tools · Security/encryption · Networking software · DBMS · Front-end packages</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">In-house vs buy vs outsource ← likely exam Q</div>
+  <div class="cards cards-3">
+    <div class="card"><div class="tag tag-a">In-house development</div><div class="card-body">Develop internally. <b>Advantages:</b> better security, better control, better knowledge. <b>Costs:</b> training, capital, technical expertise, start-up costs.</div></div>
+    <div class="card"><div class="tag tag-b">Buy packaged software</div><div class="card-body">Purchase off-the-shelf. <b>Advantages:</b> less financial risk, less technical risk, technology flexibility, focus on core business. <b>Costs:</b> specification costs, management overhead.</div></div>
+    <div class="card"><div class="tag tag-c">Outsource</div><div class="card-body">Hire a firm to develop or modify. <b>Advantages:</b> lower personnel costs, tech flexibility, focus on core business, legal contract protection. <b>Costs:</b> specification costs, loss of added value.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Tangible benefits (directly quantifiable)</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Direct cost savings</div><div class="card-body">Automating processes replaces people; efficiency-based cost reductions; fewer staff = lower property costs.</div></div>
+    <div class="card"><div class="card-head">Avoiding cost increases</div><div class="card-body">IS can avoid costs such as transportation expenses.</div></div>
+    <div class="card"><div class="card-head">Revenue increases</div><div class="card-body">Increased sales through new services, delivery channels, or market penetration.</div></div>
+    <div class="card"><div class="card-head">Staying in business</div><div class="card-body">Sometimes introducing a new system is essential for the organisation to continue operating.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Intangible benefits (can be quantified to some degree)</div>
+  <div>
+    <span class="pill pill-purple">Improved communications</span><span class="pill pill-purple">Staff morale</span><span class="pill pill-purple">Customer satisfaction</span><span class="pill pill-purple">Reputation</span><span class="pill pill-purple">Customer management</span><span class="pill pill-purple">Flexibility</span><span class="pill pill-purple">Value chain management</span><span class="pill pill-purple">Organisational learning</span><span class="pill pill-purple">Differentiation</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Total costs of ownership (TCO) ← direct review Q</div>
+  <div class="card" style="margin-bottom:8px;"><div class="card-body">TCO = a holistic view of costs over the <b>entire lifetime</b> of an investment — from acquisition to disposal. Goes beyond purchase price to include implementation, upgrades, maintenance, training, and admin costs.</div></div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Support</div><div class="card-body">Help desk, user manuals, retraining of staff.</div></div>
+    <div class="card"><div class="card-head">Disaster recovery</div><div class="card-body">Duplication of facilities at alternate sites to ensure continuity.</div></div>
+    <div class="card"><div class="card-head">Staff</div><div class="card-body">Recruiting, training developers, maintainers, and users.</div></div>
+    <div class="card"><div class="card-head">Maintenance</div><div class="card-body">Bug fixes, enhancements, spare parts, skilled technicians.</div></div>
+    <div class="card"><div class="card-head">Obsolescence</div><div class="card-body">Does the product comply with industry standards? May become impossible to maintain.</div></div>
+    <div class="card"><div class="card-head">Upgrades</div><div class="card-body">Both hardware and software will likely need upgrading over time.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Qualitative assessment — 6 measures of IS success</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Systems quality</div><div class="card-body">Reliability, features/functions, response time.</div></div>
+    <div class="card"><div class="card-head">Information quality</div><div class="card-body">Clarity, completeness, usefulness, accuracy.</div></div>
+    <div class="card"><div class="card-head">Information use</div><div class="card-body">Regularity of use, number of enquiries, duration, frequency of report requests.</div></div>
+    <div class="card"><div class="card-head">User satisfaction</div><div class="card-body">Overall satisfaction, enjoyment, software satisfaction.</div></div>
+    <div class="card"><div class="card-head">Individual impact</div><div class="card-body">Decision correctness, effectiveness, time to decide, productivity improvement.</div></div>
+    <div class="card"><div class="card-head">Organisational impact</div><div class="card-body">Achieving goals, cost-benefit ratio, ROI, service effectiveness.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-coral">Cost-benefit analysis (CBA)</span><span class="pill pill-coral">Total cost of ownership (TCO)</span><span class="pill pill-coral">Hardware cost</span><span class="pill pill-coral">Software cost</span><span class="pill pill-coral">Tangible benefits</span><span class="pill pill-coral">Intangible benefits</span><span class="pill pill-coral">In-house / Buy / Outsource</span><span class="pill pill-coral">ROI</span><span class="pill pill-coral">Payback period</span><span class="pill pill-coral">NPV / IRR</span><span class="pill pill-coral">Qualitative assessment</span>
+  </div>
+  <div class="exam-note">TCO = holistic view from acquisition to disposal, NOT just purchase price. Tangible = directly quantifiable; Intangible = harder to measure. Know 3 advantages for in-house, buy, and outsource.</div>
+</div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════ LEC 10 ══ -->
+<section class="lec-section lec-10" id="lec10">
+<div class="lec-banner">
+  <div class="lec-banner-num">Lecture 10</div>
+  <div class="lec-banner-title">IT Governance &amp; IT Audit</div>
+  <div class="lec-banner-sub">Governance Hierarchy · 5 Objectives · IT Controls · IT vs IS Audit · 5-Stage Process · Tools</div>
+</div>
+<div style="padding: 0.5rem 0 0;">
+
+<div class="sec">
+  <div class="sec-title">The governance hierarchy ← understand the chain</div>
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <div class="hier">
+      <div class="hier-row" style="background:#2C2C2A;">
+        <span class="hier-label" style="color:#fff;">Corporate Governance</span>
+        <span class="hier-desc" style="color:#B4B2A9;">Framework of rules &amp; processes by which a company is directed and controlled. Sets overall standards.</span>
+      </div>
+      <div class="hier-row" style="background:#E6F1FB;">
+        <span class="hier-label" style="color:#0C447C;">IT/IS Governance</span>
+        <span class="hier-desc" style="color:#185FA5;">Governs IT/IS within the org to align IT strategies with business objectives. Frameworks: ITIL, ISO/IEC 20000, COBIT, COSO.</span>
+      </div>
+      <div class="hier-row" style="background:#E1F5EE;">
+        <span class="hier-label" style="color:#085041;">IT/IS Control</span>
+        <span class="hier-desc" style="color:#0F6E56;">Mechanisms to manage, monitor, and mitigate risks associated with IT/IS.</span>
+      </div>
+      <div class="hier-row" style="background:#EEEDFE;">
+        <span class="hier-label" style="color:#3C3489;">IT/IS Audit</span>
+        <span class="hier-desc" style="color:#534AB7;">Assessing and evaluating the effectiveness of IT/IS governance and control mechanisms.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Why corporate governance matters</div>
+  <div>
+    <span class="pill pill-teal">Protection of stakeholder interests</span><span class="pill pill-teal">Enhanced trust &amp; credibility</span><span class="pill pill-teal">Risk management</span><span class="pill pill-teal">Long-term sustainability</span><span class="pill pill-teal">Compliance with laws &amp; regulations</span>
+  </div>
+  <div style="margin-top:8px; font-size:11px; color:var(--color-text-tertiary);">Real-world failures: Enron (2001) · HealthSouth (2003) · Satyam (2009) · Volkswagen (2015) · Wells Fargo (2016) — all due to weak governance.</div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT governance — definition &amp; frameworks</div>
+  <div class="card" style="margin-bottom:8px;"><div class="card-body">Processes, policies, and structures used to manage IT assets, resources, and operations in alignment with business goals. Involves managing and controlling key IT capability decisions to improve IT management, ensure compliance, and increase value from IT investments.</div></div>
+  <div>
+    <span class="pill pill-amber">ITIL</span><span class="pill pill-amber">ISO/IEC 20000</span><span class="pill pill-amber">COBIT</span><span class="pill pill-amber">COSO</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">5 objectives of IT governance ← direct review Q</div>
+  <div>
+    <span class="pill pill-blue">Ensures regulatory compliance</span><span class="pill pill-blue">Gains competitive advantage</span><span class="pill pill-blue">Supports business goals</span><span class="pill pill-blue">Encourages growth &amp; innovation</span><span class="pill pill-blue">Reduces risks</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT controls — types</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Security controls</div><div class="card-body">Firewalls, encryption, access controls, intrusion detection systems.</div></div>
+    <div class="card"><div class="card-head">Access controls</div><div class="card-body">Prevent unauthorized access; mitigate data breach risk.</div></div>
+    <div class="card"><div class="card-head">Change management</div><div class="card-body">Govern how changes to IT systems are planned, approved, tested, implemented.</div></div>
+    <div class="card"><div class="card-head">Incident response</div><div class="card-body">Minimize impact of incidents and enable quick recovery.</div></div>
+    <div class="card"><div class="card-head">Data protection</div><div class="card-body">Confidentiality, integrity, availability. Encryption, backup, classification, retention.</div></div>
+    <div class="card"><div class="card-head">Compliance controls</div><div class="card-body">Help avoid legal and regulatory issues.</div></div>
+    <div class="card"><div class="card-head">Vendor management</div><div class="card-body">Select, contract, and oversee third-party IT vendors and service providers.</div></div>
+    <div class="card"><div class="card-head">Monitoring &amp; reporting</div><div class="card-body">Continuous assessment of IT systems and processes.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT audit vs IS audit ← exam comparison Q</div>
+  <div class="compare-grid">
+    <div class="card">
+      <div class="tag tag-a">IT Audit</div>
+      <div class="card-body"><b style="font-weight:500">Scope:</b> Broader — covers infrastructure, hardware, software, IT operations, AND information systems.<br/><br/><b style="font-weight:500">Objective:</b> Assess overall effectiveness, efficiency, reliability of IT infrastructure.<br/><br/><b style="font-weight:500">Controls:</b> General IT controls — access, change management, backup procedures.<br/><br/><b style="font-weight:500">Compliance:</b> Broader regulatory frameworks (financial regulations).</div>
+    </div>
+    <div class="card">
+      <div class="tag tag-b">IS Audit</div>
+      <div class="card-body"><b style="font-weight:500">Scope:</b> Narrower — evaluates controls, risks, governance of information systems specifically. May include non-IT aspects (people, processes, data).<br/><br/><b style="font-weight:500">Objective:</b> Focus on data confidentiality, integrity, availability, security posture.<br/><br/><b style="font-weight:500">Controls:</b> User access controls, authentication, encryption, data classification.<br/><br/><b style="font-weight:500">Compliance:</b> Information security standards.</div>
+    </div>
+  </div>
+  <div style="margin-top:6px; font-size:11px; color:var(--color-text-tertiary);">In practice, many orgs use these terms interchangeably — the distinction can be indistinct.</div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT audit process — 5 stages ← direct review Q</div>
+  <div class="card" style="padding:1rem;">
+    <div class="process-row"><div class="process-num">1</div><div class="process-content"><span class="process-title">Planning &amp; scoping</span> — Define what needs to be audited and why. Identify potential risks and objectives.</div></div>
+    <div class="process-row"><div class="process-num">2</div><div class="process-content"><span class="process-title">Assessment</span> — Evaluate IT controls and security measures. Test selected controls and sample data. Identify weaknesses and deficiencies.</div></div>
+    <div class="process-row"><div class="process-num">3</div><div class="process-content"><span class="process-title">Reporting</span> — Document findings and recommendations in the audit report.</div></div>
+    <div class="process-row"><div class="process-num">4</div><div class="process-content"><span class="process-title">Communication &amp; action</span> — Share findings with stakeholders. Discuss concerns. Monitor implementation of corrective actions.</div></div>
+    <div class="process-row"><div class="process-num">5</div><div class="process-content"><span class="process-title">Closure &amp; improvement</span> — Formally close the audit when objectives are met. Reflect on lessons learned and update audit process for continuous improvement.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT audit software tools ← direct review Q</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Audit management systems</div><div class="card-body">Centralized platform for planning, executing, managing audits. Features: risk assessment, workpaper management, evidence collection, issue tracking, reporting.</div></div>
+    <div class="card"><div class="card-head">Data analysis tools</div><div class="card-body">Analyze large volumes of data to identify patterns, anomalies, and potential risks.</div></div>
+    <div class="card"><div class="card-head">Vulnerability assessment tools</div><div class="card-body">Scan network, servers, apps, endpoints to detect security vulnerabilities.</div></div>
+    <div class="card"><div class="card-head">Network monitoring tools</div><div class="card-body">Capture traffic, monitor devices, provide insights on utilization, anomalies, security incidents.</div></div>
+    <div class="card"><div class="card-head">Configuration management tools</div><div class="card-body">Review and manage configuration settings of systems, apps, and devices.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">IT/IS auditor skills</div>
+  <div>
+    <span class="pill pill-teal">Technical proficiency</span><span class="pill pill-teal">Analytical skills</span><span class="pill pill-teal">Communication skills</span><span class="pill pill-teal">Problem-solving</span><span class="pill pill-teal">Attention to detail</span><span class="pill pill-teal">Project management</span><span class="pill pill-teal">CISA certification (ISACA)</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Why IT audit is growing in importance</div>
+  <div>
+    <span class="pill pill-coral">Increasing reliance on technology</span><span class="pill pill-coral">Evolving regulatory landscape</span><span class="pill pill-coral">Data breaches &amp; cyber threats</span><span class="pill pill-coral">Stakeholder expectations</span><span class="pill pill-coral">Cost savings &amp; value creation</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">AI in IT governance &amp; audit</div>
+  <div class="cards">
+    <div class="card"><div class="card-head">Data analytics</div><div class="card-body">Analyze large volumes of structured and unstructured data — financial records, transactions, internal docs.</div></div>
+    <div class="card"><div class="card-head">Automation</div><div class="card-body">Automate audit tasks: data extraction, validation, analysis.</div></div>
+    <div class="card"><div class="card-head">Risk assessment</div><div class="card-body">Analyze historical data and trends to identify and prioritize risks.</div></div>
+    <div class="card"><div class="card-head">Security monitoring</div><div class="card-body">Identify threats by analyzing system logs, network traffic, and user behavior.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="sec">
+  <div class="sec-title">Key terms to know</div>
+  <div>
+    <span class="pill pill-purple">Corporate governance</span><span class="pill pill-purple">IT governance</span><span class="pill pill-purple">IT control</span><span class="pill pill-purple">IT audit</span><span class="pill pill-purple">IS audit</span><span class="pill pill-purple">IT/IS auditor</span><span class="pill pill-purple">COBIT / ITIL / COSO</span><span class="pill pill-purple">CISA</span><span class="pill pill-purple">Audit process (5 stages)</span><span class="pill pill-purple">Security controls</span><span class="pill pill-purple">Access controls</span><span class="pill pill-purple">Change management controls</span>
+  </div>
+  <div class="exam-note">Governance hierarchy: Corporate → IT Governance → IT Control → IT Audit. 5 objectives of IT governance. IT audit = broader scope; IS audit = narrower. 5-stage audit process and 5 software tools are both direct review Qs.</div>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<script>
+  const sections = document.querySelectorAll('.lec-section');
+  const links = document.querySelectorAll('.sidenav a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.sidenav a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15 });
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
